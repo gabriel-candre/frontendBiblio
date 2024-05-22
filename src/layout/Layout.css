@@ -1,0 +1,35 @@
+header {
+    text-align: center;
+}
+
+nav {
+    text-align: center;
+}
+
+nav ul {
+    list-style-type: none;
+    display: inline-flex;
+    border: solid 1px;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li:hover {
+    transform: scale(1.2);
+}
+
+nav ul li a{
+    text-decoration: none;
+    width: 200px;
+    height: 25px;
+    padding: 10px;
+    font-size: 16px;
+}
+
+nav ul li a:hover{
+    color: #007BFF
+}

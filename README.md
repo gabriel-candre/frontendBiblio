@@ -1,10 +1,10 @@
-# Getting Started with Create React App
+# Aplicação BibliotecaApi React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Aplicação criada para a disciplina Tópicos Especiais da UP [Repositório](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Para rodar
 
-In the project directory, you can run:
+Na pasta do projeto, executar:
 
 ### `npm start`
 
