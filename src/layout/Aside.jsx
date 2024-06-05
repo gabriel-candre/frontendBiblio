@@ -1,7 +1,7 @@
 function Aside() {
     return(
         <aside>
-                <h3>Opções adicionais (Marcar assistido, etc.)</h3>
+                <h3></h3>
             </aside>
     );
 }

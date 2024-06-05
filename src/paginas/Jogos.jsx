@@ -1,7 +1,7 @@
 
 function Jogos() {
     return (
-        <div>
+        <div class="principal">
             <p>Conteúdo página Jogos</p>
         </div>
     );

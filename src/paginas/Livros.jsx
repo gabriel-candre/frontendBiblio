@@ -1,7 +1,7 @@
 
 function Livros() {
     return (
-        <div>
+        <div class="principal">
             <p>Conteúdo página livros</p>
         </div>
     );

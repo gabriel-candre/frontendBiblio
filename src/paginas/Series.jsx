@@ -1,7 +1,7 @@
 
 function Series() {
     return (
-        <div>
+        <div class="principal">
             <p>Conteúdo página series</p>
         </div>
     );

@@ -1,7 +1,7 @@
 
 function Filmes() {
     return (
-        <div>
+        <div class="principal">
             <p>Conteúdo página Filmes</p>
         </div>
     );

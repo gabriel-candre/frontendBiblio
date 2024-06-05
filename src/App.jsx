@@ -2,7 +2,8 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Layout from "./layout/Layout";
 import Home from './paginas/Home';
-import Cadastros from './paginas/Cadastros';
+import CadastroFilmes from './paginas/CadastroFilmes';
+import CadastroJogos from './paginas/CadastroJogos';
 import Filmes from './paginas/Filmes';
 import Series from './paginas/Series';
 import Livros from './paginas/Livros';
@@ -14,7 +15,9 @@ function App(){
             <Routes>
                 <Route path='/' element={<Layout><Home></Home></Layout>}></Route>
 
-                <Route path='/cadastros' element={<Layout><Cadastros></Cadastros></Layout>}></Route>
+                <Route path='/cadastroFilmes' element={<Layout><CadastroFilmes></CadastroFilmes></Layout>}></Route>
+
+                <Route path='/cadastroJogos' element={<Layout><CadastroJogos></CadastroJogos></Layout>}></Route>
 
                 <Route path='/filmes' element={<Layout><Filmes></Filmes></Layout>}></Route>
 
