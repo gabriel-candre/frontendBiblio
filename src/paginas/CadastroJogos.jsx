@@ -21,7 +21,7 @@ function CadastroJogos () {
             titulo: "",
             ano: "",
             publicadora: "",
-            finalizado: ""
+            status: ""
         });
     }
 
@@ -76,10 +76,11 @@ function CadastroJogos () {
                     <tr>
                         <td>Status: </td>
                         <td>
-                            <select name="statusJogo" id="statusJogo" value={jogo.finalizado} onChange={onChangeJogo}>
+                            <select name="status" id="status" value={ jogo.status } onChange={onChangeJogo}>
                                 <option value=""></option>
-                                <option value="finalizado">Finalizado</option>
-                                <option value="andamento">Em andamento</option>
+                                <option value="Finalizado">Finalizado</option>
+                                <option value="Em andamento">Em andamento</option>
+                                <option value="Não iniciado">Não iniciado</option>
                             </select>
                         </td>
                     </tr>
@@ -110,7 +111,7 @@ function CadastroJogos () {
                 <td>{jogo.titulo}</td>
                 <td>{jogo.ano}</td>
                 <td>{jogo.publicadora}</td>
-                <td>{jogo.finalizado}</td>
+                <td>{jogo.status}</td>
                 <td>
                     <button onClick={
                         () => {excluirJogo(jogo.id);}
@@ -137,6 +138,7 @@ function CadastroJogos () {
 
     function getTabela() {
         return (
+            <div className="table-container">
             <table>
                 <tr>
                     <th>ID</th>
@@ -144,19 +146,21 @@ function CadastroJogos () {
                     <th>Ano</th>
                     <th>Publicadora</th>
                     <th>Status</th>
+                    <th>Opções</th>
                 </tr>
                 { getLinhasTabela ()}
             </table>
+            </div>
         );
     }
 
     function getConteudo() {
         if (jogo == null) {
             return (
-                <>
+                <div className="container">
                     <button type="button" onClick={() => { novoJogo();}}>Novo jogo</button>
                     {getTabela()}
-                </>
+                </div>
             );
         } else {
             return getFormulario();

@@ -1,56 +1,56 @@
 import axios from "axios";
 import { useState, useEffect} from "react";
 
-function CadastroFilmes () {
+function CadastroSeries() {
 
-    const[filme, setFilme] = useState(null);
-    const[filmes, setFilmes] = useState([]);
+    const[serie, setSerie] = useState(null);
+    const[series, setSeries] = useState([]);
 
-    function getFilmes() {
-        axios.get("http://localhost:5127/filmes")
+    function getSeries() {
+        axios.get("http://localhost:5127/series")
             .then((resposta) => {
-                setFilmes(resposta.data);
+                setSeries(resposta.data);
             }
         );
     }
 
-    useEffect (getFilmes, []);
+    useEffect (getSeries, []);
 
-    function novoFilme() {
-        setFilme({
+    function novaSerie() {
+        setSerie({
             titulo: "",
             ano: "",
-            duracao: "",
+            episodios: "",
             status: ""
         });
     }
 
     function cancelar() {
-        setFilme(null);
+        setSerie(null);
     }
 
     function refresh() {
         cancelar();
-        getFilmes();
+        getSeries();
     }
 
-    function onChangeFilme(e) {
+    function onChangeSerie(e) {
         const { name, value} = e.target;
-        setFilme((prevFilme) => ({
-            ...prevFilme,
+        setSerie((prevSerie) => ({
+            ...prevSerie,
             [name]: value
         }));
     }
 
-    function salvarFilme() {
+    function salvarSerie() {
         
-        if(filme.id) {
-            axios.put("http://localhost:5127/filmes/" + filme.id, filme)
+        if(serie.id) {
+            axios.put("http://localhost:5127/series/" + serie.id, serie)
                 .then(() => {
                     refresh();
                 });
         } else {
-            axios.post("http://localhost:5127/filmes", filme)
+            axios.post("http://localhost:5127/series", serie)
                 .then(() => {
                     refresh();
                 });
@@ -59,27 +59,27 @@ function CadastroFilmes () {
 
     function getFormulario() {
         return (
-            <form onSubmit={salvarFilme}>
+            <form onSubmit={salvarSerie}>
                 <table>
                     <tr>
                         <td>Título: </td>
-                        <td><input type="text" id="titulo" name="titulo" value={ filme.titulo } onChange={(e) => {onChangeFilme(e, filme.id);}}/></td>
+                        <td><input type="text" id="titulo" name="titulo" value={ serie.titulo } onChange={(e) => {onChangeSerie(e, serie.id);}}/></td>
                     </tr>
                     <tr>
                         <td>Ano: </td>
-                        <td><input type="number" id="ano" name="ano" value={ filme.ano } onChange={onChangeFilme}/></td>
+                        <td><input type="number" id="ano" name="ano" value={ serie.ano } onChange={onChangeSerie}/></td>
                     </tr>
                     <tr>
-                        <td>Duração: </td>
-                        <td><input type="number" id="duracao" name="duracao" value={ filme.duracao } onChange={onChangeFilme}/></td>
+                        <td>Episódios: </td>
+                        <td><input type="number" id="episodios" name="episodios" value={ serie.duracao } onChange={onChangeSerie}/></td>
                     </tr>
                     <tr>
                         <td>Status: </td>
-                        <td><select name="status" id="status" value={ filme.status } onChange={onChangeFilme}>
+                        <td><select name="status" id="status" value={ serie.status } onChange={onChangeSerie}>
                                 <option value=""></option>
-                                <option value="Assistido">Assistido</option>
-                                <option value="Não assistido">Não Assistido</option>
+                                <option value="Assistida">Assistida</option>
                                 <option value="Em andamento">Em andamento</option>
+                                <option value="Não iniciada">Não iniciada</option>
                             </select>
                         </td>
                     </tr>
@@ -92,32 +92,31 @@ function CadastroFilmes () {
         );
     }
 
-    function excluirFilme(id) {
-        axios.delete("http://localhost:5127/filmes/" + id)
+    function excluirSerie(id) {
+        axios.delete("http://localhost:5127/series/" + id)
             .then(() => {
-                getFilmes();
+                getSeries();
             });
     }
 
-    function editarFilme(filme) {
-        setFilme(filme);
+    function editarSerie(serie) {
+        setSerie(serie);
     }
 
-    function getLinhaTabela(filme) {
+    function getLinhaTabela(serie) {
         return (
-            
             <tr>
-                <td>{filme.id}</td>
-                <td>{filme.titulo}</td>
-                <td>{filme.ano}</td>
-                <td>{filme.duracao}</td>
-                <td>{filme.status}</td>
-                <td>                        
+                <td>{serie.id}</td>
+                <td>{serie.titulo}</td>
+                <td>{serie.ano}</td>
+                <td>{serie.episodios}</td>
+                <td>{serie.status}</td>
+                <td>
                     <button onClick={
-                        () => {excluirFilme(filme.id);}
+                        () => {excluirSerie(serie.id);}
                     }>Excluir</button>
                     <button onClick={
-                        () => { editarFilme(filme);}
+                        () => { editarSerie(serie);}
                     }>Editar</button>
                 </td>
             </tr>
@@ -128,9 +127,9 @@ function CadastroFilmes () {
 
         const linhasTabela = [];
 
-        for (let i = 0; i < filmes.length; i++) {
-            const filme = filmes[i];
-            linhasTabela[i] = getLinhaTabela(filme);
+        for (let i = 0; i < series.length; i++) {
+            const serie = series[i];
+            linhasTabela[i] = getLinhaTabela(serie);
         }
 
         return linhasTabela;
@@ -144,9 +143,9 @@ function CadastroFilmes () {
                     <th>ID</th>
                     <th>Título</th>
                     <th>Ano</th>
-                    <th>Duração(min)</th>
+                    <th>Episódios</th>
                     <th>Status</th>
-                    <th>Opção</th>
+                    <th>Opções</th>
                 </tr>
                 { getLinhasTabela ()}
             </table>
@@ -155,10 +154,10 @@ function CadastroFilmes () {
     }
 
     function getConteudo() {
-        if (filme == null) {
+        if (serie == null) {
             return (
                 <div className="container">
-                    <button type="button" onClick={() => { novoFilme();}} class="botaoNovo">Novo filme</button>
+                    <button type="button" onClick={() => { novaSerie();}}>Nova série</button>
                     {getTabela()}
                 </div>
             );
@@ -170,4 +169,4 @@ function CadastroFilmes () {
     return (getConteudo());
 }
 
-export default CadastroFilmes;
+export default CadastroSeries;

@@ -4,10 +4,9 @@ import Layout from "./layout/Layout";
 import Home from './paginas/Home';
 import CadastroFilmes from './paginas/CadastroFilmes';
 import CadastroJogos from './paginas/CadastroJogos';
-import Filmes from './paginas/Filmes';
-import Series from './paginas/Series';
-import Livros from './paginas/Livros';
-import Jogos from './paginas/Jogos';
+import CadastroSeries from './paginas/CadastroSeries';
+import CadastroLivros from './paginas/CadastroLivros';
+
 
 function App(){
     return (
@@ -19,13 +18,10 @@ function App(){
 
                 <Route path='/cadastroJogos' element={<Layout><CadastroJogos></CadastroJogos></Layout>}></Route>
 
-                <Route path='/filmes' element={<Layout><Filmes></Filmes></Layout>}></Route>
+                <Route path='/cadastroSeries' element={<Layout><CadastroSeries></CadastroSeries></Layout>}></Route>
 
-                <Route path='/series' element={<Layout><Series></Series></Layout>}></Route>
+                <Route path='/cadastroLivros' element={<Layout><CadastroLivros></CadastroLivros></Layout>}></Route>
 
-                <Route path='/livros' element={<Layout><Livros></Livros></Layout>}></Route>
-
-                <Route path='/jogos' element={<Layout><Jogos></Jogos></Layout>}></Route>
             </Routes>
             
 
